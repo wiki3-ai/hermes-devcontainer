@@ -1,0 +1,24 @@
+{
+  "name": "Hermes Agent",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "overrideCommand": false,
+  "mounts": [
+    "source=hermes-opt-data,target=/opt/data,type=volume"
+  ],
+  "runArgs": [
+    "--add-host=host.docker.internal:host-gateway",
+    "--add-host=host.containers.internal:host-gateway"
+  ],
+  "forwardPorts": [8642, 9119],
+  "portsAttributes": {
+    "8642": {
+      "label": "Hermes Gateway API"
+    },
+    "9119": {
+      "label": "Hermes Dashboard"
+    }
+  }
+}
