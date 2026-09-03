@@ -5,6 +5,16 @@
     "context": "."
   },
   "overrideCommand": false,
+  "containerEnv": {
+    "HERMES_DASHBOARD": "1",
+    "HERMES_DASHBOARD_HOST": "0.0.0.0",
+    "HERMES_DASHBOARD_BASIC_AUTH_USERNAME": "hermes",
+    "HERMES_DASHBOARD_BASIC_AUTH_PASSWORD": "hermes-devcontainer",
+    "HERMES_DASHBOARD_BASIC_AUTH_SECRET": "hermes-devcontainer-basic-auth-secret-change-me",
+    "API_SERVER_ENABLED": "true",
+    "API_SERVER_HOST": "0.0.0.0",
+    "API_SERVER_KEY": "hermes-devcontainer-local-api-key"
+  },
   "mounts": [
     "source=hermes-opt-data,target=/opt/data,type=volume"
   ],
@@ -15,10 +25,16 @@
   "forwardPorts": [8642, 9119],
   "portsAttributes": {
     "8642": {
-      "label": "Hermes Gateway API"
+      "label": "Hermes Gateway API",
+      "onAutoForward": "notify",
+      "protocol": "http",
+      "visibility": "public"
     },
     "9119": {
-      "label": "Hermes Dashboard"
+      "label": "Hermes Dashboard",
+      "onAutoForward": "openPreview",
+      "protocol": "http",
+      "visibility": "public"
     }
   }
 }
