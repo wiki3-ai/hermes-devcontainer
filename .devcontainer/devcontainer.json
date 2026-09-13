@@ -1,5 +1,5 @@
 {
-  "name": "Hermes Agent",
+  "name": "Hermes Agent + Unsloth",
   "build": {
     "dockerfile": "Dockerfile",
     "context": "."
@@ -22,7 +22,11 @@
     "--add-host=host.docker.internal:host-gateway",
     "--add-host=host.containers.internal:host-gateway"
   ],
-  "forwardPorts": [8642, 9119],
+  "postCreateCommand": ".devcontainer/configure-hermes.sh",
+  "forwardPorts": [
+    8642,
+    9119
+  ],
   "portsAttributes": {
     "8642": {
       "label": "Hermes Gateway API",
@@ -35,6 +39,11 @@
       "onAutoForward": "openPreview",
       "protocol": "http",
       "visibility": "public"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": []
     }
   }
 }
